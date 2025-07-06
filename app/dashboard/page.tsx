@@ -1,14 +1,11 @@
 import { Badge } from "@/components/badge";
 import { Divider } from "@/components/divider";
 import { Heading, Subheading } from "@/components/heading";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/table";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Home",
+};
 
 export default function Home() {
   return (
@@ -21,27 +18,6 @@ export default function Home() {
         <Stat title="Tickets sold" value="5,888" change="+4.5%" />
         <Stat title="Pageviews" value="823,067" change="+21.2%" />
       </div>
-      <Subheading className="mt-14">Recent Activity</Subheading>
-      <Table className="mt-4 [--gutter:theme(spacing.6)] lg:[--gutter:theme(spacing.10)]">
-        <TableHead>
-          <TableRow>
-            <TableHeader>Something</TableHeader>
-            <TableHeader>Something</TableHeader>
-            <TableHeader>Something</TableHeader>
-            <TableHeader>Something</TableHeader>
-            <TableHeader className="text-right">Amount</TableHeader>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          <TableRow key="1" href="" title="">
-            <TableCell>Something</TableCell>
-            <TableCell>Something</TableCell>
-            <TableCell>Something</TableCell>
-            <TableCell>Something</TableCell>
-            <TableCell className="text-right">Something</TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
     </>
   );
 }

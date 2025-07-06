@@ -35,11 +35,12 @@ import {
   UserIcon,
 } from "@heroicons/react/16/solid";
 import {
+  ArrowsRightLeftIcon,
   BuildingOffice2Icon,
   ChatBubbleLeftRightIcon,
   HomeIcon,
+  TableCellsIcon,
   UserGroupIcon,
-  WalletIcon,
 } from "@heroicons/react/20/solid";
 import { usePathname } from "next/navigation";
 
@@ -133,18 +134,25 @@ export default function DashboardLayout({
                 <SidebarLabel>Projects</SidebarLabel>
               </SidebarItem>
               <SidebarItem
-                href="/dashboard/wallets"
-                current={pathname.startsWith("/dashboard/wallets")}
-              >
-                <WalletIcon />
-                <SidebarLabel>Wallets</SidebarLabel>
-              </SidebarItem>
-              <SidebarItem
                 href="/dashboard/users"
                 current={pathname.startsWith("/dashboard/users")}
               >
                 <UserGroupIcon />
                 <SidebarLabel>Users</SidebarLabel>
+              </SidebarItem>
+              <SidebarItem
+                href="/dashboard/activities"
+                current={pathname.startsWith("/dashboard/activities")}
+              >
+                <ArrowsRightLeftIcon />
+                <SidebarLabel>Activities</SidebarLabel>
+              </SidebarItem>
+              <SidebarItem
+                href="/dashboard/transactions"
+                current={pathname.startsWith("/dashboard/transactions")}
+              >
+                <TableCellsIcon />
+                <SidebarLabel>Transactions</SidebarLabel>
               </SidebarItem>
             </SidebarSection>
             <SidebarSpacer />

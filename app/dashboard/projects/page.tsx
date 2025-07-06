@@ -17,12 +17,17 @@ import {
 } from "@heroicons/react/16/solid";
 import type { Metadata } from "next";
 import Image from "next/image";
+import { Project } from "./interface";
 
 export const metadata: Metadata = {
   title: "Projects",
 };
 
-export default async function Projects() {
+export default async function ProjectsPage() {
+  const data = await fetch(`http://localhost:8000/dashboard/projects`, {
+    cache: "no-store",
+  });
+  const projects = await data.json();
   return (
     <>
       <div className="flex flex-wrap items-end justify-between gap-4">
@@ -44,55 +49,70 @@ export default async function Projects() {
             </div>
           </div>
         </div>
-        <Button href="">Create project</Button>
+        <Button href="/dashboard/projects/create">Create project</Button>
       </div>
       <ul className="mt-10">
         <>
-          <li key="1">
-            <Divider soft={0 > 0} />
-            <div className="flex items-center justify-between">
-              <div key="1" className="flex gap-6 py-6">
-                <div className="w-32 shrink-0">
-                  <Link href="" aria-hidden="true">
-                    <Image
-                      className="aspect-[3/2] rounded-lg shadow"
-                      src=""
-                      alt=""
-                    />
-                  </Link>
+          {projects.results.map((project: Project, index: number) => (
+            <li key={project.id}>
+              <Divider soft={index > 0} />
+              <div className="flex items-center justify-between">
+                <div key={project.id} className="flex gap-6 py-6">
+                  <div className="w-32 shrink-0">
+                    <Link
+                      href={`/dashboard/projects/${project.id}`}
+                      aria-hidden="true"
+                    >
+                      <Image
+                        className="aspect-[3/2] rounded-lg shadow"
+                        src={project.images[0].url}
+                        alt=""
+                        width={500}
+                        height={500}
+                      />
+                    </Link>
+                  </div>
+                  <div className="space-y-1.5">
+                    <div className="text-base/6 font-semibold">
+                      <Link href={`/dashboard/projects/${project.id}`}>
+                        {project.name}
+                      </Link>
+                    </div>
+                    <div className="text-xs/6 text-zinc-500">
+                      {project.project_type}
+                      <span aria-hidden="true"> - </span>
+                      {project.city}
+                    </div>
+                    <div className="text-xs/6 text-zinc-600">
+                      {project.address}
+                    </div>
+                  </div>
                 </div>
-                <div className="space-y-1.5">
-                  <div className="text-base/6 font-semibold">
-                    <Link href="">Name</Link>
-                  </div>
-                  <div className="text-xs/6 text-zinc-500">
-                    Date at time <span aria-hidden="true">·</span> Location
-                  </div>
-                  <div className="text-xs/6 text-zinc-600">
-                    Something/Something slots sold
-                  </div>
+                <div className="flex items-center gap-4">
+                  <Badge
+                    className="max-sm:hidden"
+                    color={
+                      project.project_status === "FUNDING" ? "lime" : "zinc"
+                    }
+                  >
+                    {project.project_status}
+                  </Badge>
+                  <Dropdown>
+                    <DropdownButton plain aria-label="More options">
+                      <EllipsisVerticalIcon />
+                    </DropdownButton>
+                    <DropdownMenu anchor="bottom end">
+                      <DropdownItem href={`/dashboard/projects/${project.id}`}>
+                        View
+                      </DropdownItem>
+                      <DropdownItem>Edit</DropdownItem>
+                      <DropdownItem>Delete</DropdownItem>
+                    </DropdownMenu>
+                  </Dropdown>
                 </div>
               </div>
-              <div className="flex items-center gap-4">
-                <Badge
-                  className="max-sm:hidden"
-                  color={"On Sale" === "On Sale" ? "lime" : "zinc"}
-                >
-                  Status
-                </Badge>
-                <Dropdown>
-                  <DropdownButton plain aria-label="More options">
-                    <EllipsisVerticalIcon />
-                  </DropdownButton>
-                  <DropdownMenu anchor="bottom end">
-                    <DropdownItem href="">View</DropdownItem>
-                    <DropdownItem>Edit</DropdownItem>
-                    <DropdownItem>Delete</DropdownItem>
-                  </DropdownMenu>
-                </Dropdown>
-              </div>
-            </div>
-          </li>
+            </li>
+          ))}
         </>
       </ul>
     </>

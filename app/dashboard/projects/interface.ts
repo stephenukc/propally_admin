@@ -1,0 +1,104 @@
+export interface Project {
+  id: string;
+  longitude: string;
+  latitude: string;
+  overview_details: object[];
+  market_details: object[];
+  financials: object[];
+  updates: object[];
+  images: {
+    url: string;
+    order: number;
+  }[];
+  videos: object[];
+  documents: object[];
+  name: string;
+  address: string;
+  city: string;
+  state: string;
+  province: string;
+  county: string;
+  country: string;
+  stakeholders: object[];
+  monthly_net_cash_flow_history: object[];
+  property_value_history: {
+    price: string;
+    date: string;
+  }[];
+  wallet: {
+    id: string;
+    ledger_balance: string;
+    available_balance: string;
+    pin: string;
+    status: string;
+    created_at: string;
+    updated_at: string;
+  };
+  investments: {
+    id: string;
+    current_equity: string;
+    monthly_net_cash_flow: string;
+    monthly_net_cash_flow_date: string;
+    total_net_cash_flow: string;
+    capital_appreciation: string;
+    capital_appreciation_date: string;
+    investment_net_profit: string;
+    investment_percentage_change: string;
+    investment_value: string;
+    investment_value_history: {
+      investment_value: number;
+      date: string;
+    }[];
+    project: {
+      id: string;
+      name: string;
+      city: string;
+      country: string;
+      property_images: {
+        url: string;
+        order: number;
+      }[];
+      term: number;
+      currency: string;
+      project_type: string;
+      target_roi: string;
+      number_of_investors: number;
+      updated_at: string;
+      project_status: string;
+    };
+    amount: string;
+    equity_stake: string;
+    status: string;
+    created_at: string;
+    updated_at: string;
+  }[];
+  currency: string;
+  funding_target: string;
+  amount_funded: string;
+  number_of_investors: number;
+  term: number;
+  project_type: string;
+  investment_type: string;
+  project_status: string;
+  target_roi: string;
+  minimum_investment: string;
+  unit_price: string;
+  number_of_slots: number;
+  available_slots: number;
+  target_mortgage: string;
+  total_equity_offering: string;
+  mortgage_annual_interest_rate: string;
+  funding_opening_date: string;
+  funding_closing_date: string;
+  target_annual_roi: string;
+  target_irr: string;
+  realised_roi: string;
+  realised_irr: string;
+  target_completion_date: string;
+  actual_completion_date: string;
+  target_annual_rental_yield: string;
+  realised_annual_rental_yield: string;
+  status: string;
+  created_at: string;
+  updated_at: string;
+}
